@@ -33,8 +33,6 @@ Wie zu erwarten war, führen Überschwemmungen zu erheblichen Umwegen, wodurch s
 Unter normalen Bedingungen können die Rettungswachen in Pirna das betroffene Gebiet in weniger als zehn Minuten erreichen. Bei Hochwasser steigen die Fahrzeiten jedoch auf über 30 Minuten an.
 Dies zeigt, dass Strecken, die normalerweise kurz und direkt sind, bei Hochwasser oft erhebliche Umwege erfordern.
 Im Zusammenhang mit der gesetzlich festgelegten „Hilfsfrist“ von etwa zehn Minuten werden solche Verlängerungen kritisch.
-			
-Rangwechsel der Rettungswachen bei Hochwasser in Pirna 
 
 
 
@@ -45,7 +43,7 @@ Rangwechsel der Rettungswachen bei Hochwasser in Pirna
 
 
 
-Tabelle 1: Vergleich der Routing-Ergebnisse für die Rettungswachen in Heidenau. Dargestellt sind Veränderungen in Fahrtdauer, Strecke und Reihenfolge der schnellsten Verbindungen (eigene Darstellung)
+*Tabelle 1: Vergleich der Routing-Ergebnisse für die Rettungswachen in Heidenau. Dargestellt sind Veränderungen in Fahrtdauer, Strecke und Reihenfolge der schnellsten Verbindungen (eigene Darstellung)*
 
 
 
@@ -55,7 +53,7 @@ Eine der wichtigsten Erkenntnisse ist, dass sich durch Überschwemmungen ändern
 
 
 
-Abbildung 1: Routing der Rettungswache Pirna zum gewählten Anfahrtspunkt unter normalen Bedingungen und bei Hochwasser (eigene Darstellung)
+*Abbildung 1: Routing der Rettungswache Pirna zum gewählten Anfahrtspunkt unter normalen Bedingungen und bei Hochwasser (eigene Darstellung)*
 
 
 Abbildung 2 zeigt die Route der nun schnellsten Rettungswache. Aufgrund des großen Umwegs, den die Rettungswache Pirna zurücklegen muss, wird stattdessen die Wache im Nachbarort Heidenau zur schnelleren Option.
@@ -67,14 +65,14 @@ Dies verdeutlicht, dass die bei normalen Bedingungen nächstgelegene Station bei
 
 
 
-Abbildung 2: Vergleich der schnellsten Route zum Anfahrtspunkt unter normalen Bedingungen und bei Hochwasser. Bei Hochwasser ist die Rettungswache aus Heidenau am schnellsten vor Ort (eigene Darstellung)
+*Abbildung 2: Vergleich der schnellsten Route zum Anfahrtspunkt unter normalen Bedingungen und bei Hochwasser. Bei Hochwasser ist die Rettungswache aus Heidenau am schnellsten vor Ort (eigene Darstellung)*
 
 Interessanterweise kam es teilweise auch zu Routenänderungen, obwohl die überschwemmten Gebiete den ursprünglichen Weg nicht direkt versperrten. Dies könnte darauf hindeuten, dass Störungen im umliegenden Straßennetz die Routenentscheidungen indirekt beeinflussen.
 
 
 ![Abbildung 3: Vergleich der schnellsten Routen der Feuerwehrstationen in Pirna. Obwohl die Strecke nicht direkt vom Hochwasser betroffen ist, wird dennoch ein kleiner Umweg gefahren (eigene Darstellung)](./images/Fig_5_schnellsteRoute.png)
 
-Abbildung 3: Vergleich der schnellsten Routen der Feuerwehrstationen in Pirna. Obwohl die Strecke nicht direkt vom Hochwasser betroffen ist, wird dennoch ein kleiner Umweg gefahren (eigene Darstellung)
+*Abbildung 3: Vergleich der schnellsten Routen der Feuerwehrstationen in Pirna. Obwohl die Strecke nicht direkt vom Hochwasser betroffen ist, wird dennoch ein kleiner Umweg gefahren (eigene Darstellung)*
 
 ## Fazit
 Insgesamt zeigt dieses Projekt, dass es möglich und sinnvoll ist, die Erreichbarkeit von Rettungskräften unter Hochwasserbedingungen im Voraus zu analysieren. Die Ergebnisse zeigen, dass Hochwasser die Anfahrtszeiten erheblich verlängert und in manchen Fällen eine Einhaltung der vorgeschriebenen Hilfsfrist unmöglich macht.
