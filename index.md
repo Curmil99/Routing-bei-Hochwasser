@@ -67,7 +67,7 @@ Dies verdeutlicht, dass die bei normalen Bedingungen nächstgelegene Station bei
 
 *Abbildung 2: Vergleich der schnellsten Route zum Anfahrtspunkt unter normalen Bedingungen und bei Hochwasser. Bei Hochwasser ist die Rettungswache aus Heidenau am schnellsten vor Ort (eigene Darstellung)*
 
-Interessanterweise kam es teilweise auch zu Routenänderungen, obwohl die überschwemmten Gebiete den ursprünglichen Weg nicht direkt versperrten. Dies könnte darauf hindeuten, dass Störungen im umliegenden Straßennetz die Routenentscheidungen indirekt beeinflussen.
+Interessanterweise kam es teilweise auch zu Routenänderungen, obwohl die überschwemmten Gebiete den ursprünglichen Weg nicht direkt versperrten (siehe Abbildung 3). Dies könnte darauf hindeuten, dass Störungen im umliegenden Straßennetz die Routenentscheidungen indirekt beeinflussen.
 
 
 ![Abbildung 3: Vergleich der schnellsten Routen der Feuerwehrstationen in Pirna. Obwohl die Strecke nicht direkt vom Hochwasser betroffen ist, wird dennoch ein kleiner Umweg gefahren (eigene Darstellung)](./images/Fig_5_schnellsteRoute.png)
