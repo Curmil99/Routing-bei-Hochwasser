@@ -49,7 +49,7 @@ Im Zusammenhang mit der gesetzlich festgelegten „Hilfsfrist“ von etwa zehn M
 
 Eine der wichtigsten Erkenntnisse ist, dass sich durch Überschwemmungen ändern kann, welche Rettungsdienststelle tatsächlich am schnellsten vor Ort ist. Abbildung 1 zeigt die Veränderung der ursprünglich schnellsten Route der Rettungswache Pirna bei Hochwasser. Während diese unter normalen Bedingungen eine direkte Verbindung mit einer Fahrzeit von etwa sieben Minuten hat, ist sie aufgrund überfluteter Straßen nicht mehr befahrbar und erfordert einen erheblichen Umweg. Dadurch verlängert sich die Fahrzeit auf über 30 Minuten.
 
-![Abbildung 1: Vergleich der Routing-Ergebnisse der Rettungswachen im Normalfall und bei Hochwasser](./images/Fig_5_schnellste_Route_minDist.png)
+![Abbildung 1: Vergleich der Routing-Ergebnisse der Rettungswachen im Normalfall und bei Hochwasser](./images/normal_Avoid_rettungswache.png)
 
 
 
@@ -61,7 +61,7 @@ Dies verdeutlicht, dass die bei normalen Bedingungen nächstgelegene Station bei
 
 
 
-![Abbildung 2: Vergleich der schnellsten Route zum Anfahrtspunkt unter normalen Bedingungen und bei Hochwasser. Bei Hochwasser ist die Rettungswache aus Heidenau am schnellsten vor Ort (eigene Darstellung)](./images/Fig_5_schnellsteRoute_Rettungsdienst.png)
+![Abbildung 2: Vergleich der schnellsten Route zum Anfahrtspunkt unter normalen Bedingungen und bei Hochwasser. Bei Hochwasser ist die Rettungswache aus Heidenau am schnellsten vor Ort (eigene Darstellung)](./images/schnelleste_rettungswache.png)
 
 
 
@@ -70,7 +70,7 @@ Dies verdeutlicht, dass die bei normalen Bedingungen nächstgelegene Station bei
 Interessanterweise kam es teilweise auch zu Routenänderungen, obwohl die überschwemmten Gebiete den ursprünglichen Weg nicht direkt versperrten (siehe Abbildung 3). Dies könnte darauf hindeuten, dass Störungen im umliegenden Straßennetz die Routenentscheidungen indirekt beeinflussen.
 
 
-![Abbildung 3: Vergleich der schnellsten Routen der Feuerwehrstationen in Pirna. Obwohl die Strecke nicht direkt vom Hochwasser betroffen ist, wird dennoch ein kleiner Umweg gefahren (eigene Darstellung)](./images/Fig_5_schnellsteRoute.png)
+![Abbildung 3: Vergleich der schnellsten Routen der Feuerwehrstationen in Pirna. Obwohl die Strecke nicht direkt vom Hochwasser betroffen ist, wird dennoch ein kleiner Umweg gefahren (eigene Darstellung)](./images/Feuerwehr_schnellsteRoute.png)
 
 *Abbildung 3: Vergleich der schnellsten Routen der Feuerwehrstationen in Pirna. Obwohl die Strecke nicht direkt vom Hochwasser betroffen ist, wird dennoch ein kleiner Umweg gefahren (eigene Darstellung)*
 
