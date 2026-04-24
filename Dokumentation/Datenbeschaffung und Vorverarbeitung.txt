@@ -1,0 +1,38 @@
+Datenbeschaffung und Vorverarbeitung
+
+
+
+Überflutungsdaten: 
+Die Hochwasserdaten wurden über das Geoportal Sachsen bereitgestellt. Dabei standen sowohl normale als auch potenziell gefährdete Überschwemmungsgebiete zur Verfügung.
+Für die Analyse wurden ausschließlich die normalen Überschwemmungsgebiete verwendet. Die Daten lagen als Vektordaten vor.
+
+
+
+Verwaltungsgrenzen: 
+Auch die Gemeindegrenzen wurden über das Geoportal Sachsen bezogen und als Vektordatensatz genutzt.
+Sie dienen einerseits zur räumlichen Begrenzung der Analyse und andererseits zum Zuschneiden weiterer Datensätze.
+
+
+
+Straßennetzwerk: 
+Das Straßennetzwerk wurde mithilfe von Overpass Turbo aus OpenStreetMap extrahiert.
+Berücksichtigt wurden ausschließlich motorisierbare Straßen, um ein Routingnetzwerk zu erzeugen, das dem von OpenRouteService verwendeten Netzwerk möglichst nahekommt.
+
+Verwendete Abfrage: way[highway~"^(motorway|trunk|primary|secondary|tertiary|residential|unclassified)$"]
+
+
+
+Bevölkerungsdaten: 
+Für die Analyse wurden Bevölkerungsdaten aus dem Zensus 2022 im 100-Meter-Raster verwendet. Ursprünglich liegen diese als Punktdaten (Rastermittelpunkte) im Koordinatensystem EPSG:3035 vor.
+Zur weiteren Nutzung wurden folgende Vorverarbeitungsschritte durchgeführt: Der entsprechende Code ist im Ordner „./Code/Daten/Datenaufbereitung/bevölkerung_selectieren.py” zu finden.
+
+1. Umwandlung in ein GeoDataFrame.
+2. Transformation in das Projekt-Koordinatensystem EPSG:25833 (muss für andere Regionen Deutschlands eventuell angepasst werden).
+3. Rasterpunkte in Polygonzellen (100 m x 100 m) umwandeln.
+4. Entfernen unbewohnter Rasterzellen
+5. Zuschneiden auf die Verwaltungsgrenzen des Untersuchungsgebiets (in diesem Projekt auf ganz Sachsen)
+6. Export als GeoPackage
+
+Durch das Entfernen unbewohnter Rasterzellen und das Zuschneiden auf ein kleineres Gebiet wird die Datenmenge erheblich reduziert, ohne dass die Aussagekraft der Bevölkerungsverteilung beeinträchtigt wird.
+
+Die resultierende Datei enthält alle bewohnten Rasterzellen des Untersuchungsgebiets als Vektordaten und bildet die Grundlage für die spätere Erreichbarkeitsanalyse.

@@ -1,0 +1,35 @@
+Dokumentation ~ Schritt 3:
+
+In diesem letzten Schritt werden die Fahrtzeiten zwischen den fünf nächstgelegenen Rettungsdiensten (POIs) und dem Exit Point sowohl ohne als auch mit Berücksichtigung der Überflutung berechnet. Die Ergebnisse werden nach Fahrtdauer gerankt und als GeoDataFrame zurückgegeben, um Umwege durch Hochwasser zu quantifizieren.
+
+
+next_care04_2:
+
+Die Funktion erhält den ExitPoint/TargetPoint, die zugeschnittene Flutfläche (Vektordaten) und die fünf nächstgelegenen Rettungsdienste und Feuerwehrstationen als GeoDataFrame als Eingabe.
+
+Zunächst werden Transformer für die bidirektionale CRS-Umwandlung zwischen EPSG:25833 (projektiert) und EPSG:4326 (für ORS) erstellt. 
+
+
+
+Für jede Rettungs- oder Feuerwehrstation werden folgende Schritte durchgeführt:
+1. Der Startpunkt (Zentroid der Station) und der Endpunkt (ExitPoint) werden in beiden CRS gespeichert.
+2. Stationen, die selbst innerhalb der Flut liegen (flood_union.contains()), werden übersprungen.
+3. Es wird eine Luftlinie mit einem Puffer von 3 km zwischen Start- und Endpunkt erstellt. 
+4. Die Flutfläche wird auf diesen „Korridor” beschnitten (Intersection), validiert (MakeValid) und vereinfacht (Simplify(20)).
+	(Der Korridor und Simplify waren erforderlich, da ORS bei den Hochwasserrouten sonst Probleme mit den Flutungs-Polygonen hat, da diese ansonsten zu viele Features haben.)	
+5. Anschließend wird die Flutgeometrie wieder in das Format 4326 konvertiert, damit sie das richtige Format für die Routenberechnung hat.
+6. Die Routenberechnung erfolgt mit der Funktion ors_analyse02.
+7. Die Differenz von Distanz und Zeit zwischen normaler Route und Hochwasserroute wird ermittelt.
+8. Die Funktion gibt ein GeoDataFrame mit allen Routen zurück. Jeder Eintrag enthält die ID, die Routengeometrien, den Namen, die Distanzen/Zeiten (Normal + Hochwasser) sowie die zuvor berechnete Differenz.
+
+
+
+Ors_analyse02: 
+Diese Funktion erhält als Eingabe die Koordinaten des Rettungsdienstes (Startpunkt: EPSG:4326-Tupel) und des Exit Points (Endpunkt: EPSG:4326-Tupel) sowie die auf den 3 km breiten Korridor beschnittene, vereinfachte Flutfläche als GeoJSON.
+
+Zunächst wird die normale Route (Fahrt mit dem Auto) über die OpenRouteService-API berechnet.
+Funktioniert dies, werden Distanz und Dauer aus „properties.summary” extrahiert. Bei einem „APIError” werden „None”-Werte gesetzt und die Station übersprungen.
+
+Bekannter Fehler: Es ist nicht immer nachvollziehbar, warum Routen fehlschlagen – mögliche API-Bugs oder nicht visualisierte Flutpolygone können das Routing blockieren.
+
+Die Rückgabe der Funktion ist ein Dictionary mit „summary_normal”, „summary_avoid” (jeweils mit „Distanz” (int) und „Dauer” (int)) sowie „route_normal” und „route_avoid” als GeoJSON-Routen.

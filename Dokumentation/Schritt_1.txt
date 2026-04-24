@@ -1,0 +1,55 @@
+Dokumentation ~ Schritt 1:
+
+In diesem Schritt werden die Überflutungsflächen und die meist betroffenen Menschen ausgemacht. Außerdem wird ein Anfahrtspunkt für Rettungsdienste und Feuerwehr festgelegt.
+
+
+
+selectOrt_u_Bev.py:
+Als Eingabe für diese Funktion werden die vorprozessierten Bevölkerungsdaten für Sachsen (Vektordaten im 100-m-×-100-m-Grid), die Überflutungsflächen (Vektordaten) und die Gemeindegrenzen (Vektordaten) sowie der Name der zu untersuchenden Gemeinde benötigt.
+
+Zunächst werden die Überflutungsflächen und die Gemeindegrenzen in ein gemeinsames, projiziertes Koordinatensystem (EPSG:25833) überführt, um geometrische Operationen zu ermöglichen.
+Anschließend werden die Überflutungsflächen auf die Gemeinde zugeschnitten („Clip”).
+Der zugeschnittene Überflutungsbereich wird dann mit den Bevölkerungsdaten verschnitten (Intersektion), um bewohnte Flächen innerhalb des Überschwemmungsgebiets zu ermitteln.
+Dabei behalten Rasterzellen, die nur teilweise von der Überflutung betroffen sind, ihren vollständigen Bevölkerungswert.
+Das Ergebnis der Funktion sind die bewohnten Rasterflächen im Überflutungsgebiet der zu untersuchenden Gemeinde sowie ihre Bevölkerungsattribute.
+
+
+
+
+target_point.py:
+Als Eingabe für diese Funktion werden die bewohnten Rasterflächen innerhalb des Überschwemmungsgebiets (Vektordaten) verwendet. Zusätzlich werden die Überflutungsflächen, die Gemeindegrenzen und der Name der untersuchten Gemeinde für das Debugging und die Visualisierung übergeben.
+
+Alle Datensätze werden zunächst in das gemeinsame projizierte Koordinatensystem (EPSG:25833) überführt, um konsistente geometrische Operationen zu gewährleisten.
+
+Da die betroffenen Siedlungsflächen als einzelne Rasterzellen vorliegen, werden diese zunächst zu einer zusammenhängenden Fläche vereinigt. Dies erfolgt mittels „unary union”. Kleinere Lücken zwischen den Rasterzellen werden mittels eines Buffers geschlossen, um ein geometrisch zusammenhängendes Cluster zu erzeugen.
+
+Anschließend werden die Flächen mit der Funktion „Explode” zu eigenständigen Clustern zerlegt. Per Join wird anschließend eines der Cluster den ursprünglichen Rasterzellen zugeordnet. Dadurch lassen sich die Bevölkerungswerte für die Cluster aufsummieren.
+Somit wird für jedes Cluster die Gesamtbevölkerung sowie dessen Zentroid (geometrischer Schwerpunkt) bestimmt.
+
+Die Funktion gibt die Geometrien sowie die Zentroid der fünf Cluster mit der höchsten Bevölkerungszahl zurück. 
+Im weiteren Analyseworkflow wird jedoch ausschließlich das Cluster mit der höchsten Bevölkerungszahl und dessen Zentroid als Zielgebiet verwendet.
+
+
+
+
+find_exit.py:
+Als Eingabe für diese Funktion werden der Zentroid und das Polygon des am stärksten betroffenen Clusters verwendet (beides Vektordaten). Zudem wird das Straßennetz der Gemeinde übergeben, das zuvor mit Overpass Turbo extrahiert wurde und ebenfalls als Vektordaten vorliegt.
+
+Da der Zentroid häufig innerhalb des Überschwemmungsgebiets liegt und daher für Rettungswege ungeeignet ist, wird ein alternativer Anfahrtspunkt („Exit Point“) auf dem trockenen Straßennetz bestimmt.
+
+Zunächst werden alle Straßensegmente ausgeschnitten, die sich innerhalb der Flutfläche befinden. Straßen, die nur teilweise betroffen sind, werden an den Flutgrenzen durchtrennt. Anschließend wird aus den verbleibenden trockenen Straßensegmenten ein Netzwerkgraphen erstellt, wobei die Knoten die Endpunkte der Straßen repräsentieren. Es werden nur zusammenhängende Straßenteile berücksichtigt, um sicherzustellen, dass der Exit Point über das Straßennetzwerk erreichbar ist.
+Alle Punkte an der Grenze zum überschwemmten Gebiet werden als mögliche Exit Points generiert. Dabei wird sichergestellt, dass die Punkte innerhalb von fünf Metern zur Außenkante des Flutpolygons liegen, sodass Punkte in inneren Trockeninseln ausgeschlossen werden.
+
+Unter den potenziellen Exit Points wird derjenige ausgewählt, der die kürzeste Luftlinien-Distanz zum ursprünglichen Zentroid aufweist. 
+
+Die Funktion gibt den Exit-Point als Koordinatenpaar zurück. Optional wird für Debugging-Zwecke eine Visualisierung erstellt, die das Flutpolygon, die Straßen, den Centroid und die möglichen Exit Points zeigt.
+
+
+
+Bekannter Fehler: 
+Es kann vorkommen, dass nicht alle möglichen Ausgänge als ExitPoints erkannt und dargestellt werden. Der Grund hierfür ist noch unbekannt.
+
+
+
+
+

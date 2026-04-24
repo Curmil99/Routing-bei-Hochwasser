@@ -1,0 +1,29 @@
+
+Dokumentation ~ Schritt 2:
+
+In diesem Schritt werden Krankenhäuser und Feuerwachen ermittelt, die innerhalb von 15 Minuten vom ExitPoint aus erreichbar sind.
+
+
+
+helth_and_fire_in_puffer.py:
+Die Funktion erhält als Eingabe den zuvor bestimmten Exit Point als Koordinaten, die Flutflächen als Vektordaten sowie den Namen der Gemeinde, um die Ergebnisse korrekt zu speichern.
+
+Zunächst werden die Koordinaten des Exit Points so angepasst, dass sie mit OpenStreetMap/OpenRouteService kompatibel sind (Longitude/Latitude-Reihenfolge).
+Anschließend wird über OpenRouteService eine 15-minütige Isochrone für die Autofahrzeit um den Exit Point erstellt.
+Da die maximale Anfahrtszeit bei Rettungsdiensten ca. 10 Minuten beträgt, wurde die Fahrzeit bewusst um 50 % verlängert, um auch Hochwasserbedingungen abzubilden.
+
+Nun werden die POIs innerhalb dieser Isochrone gefiltert.
+Dabei wird für die Feuerwachen der Tag „amenity=fire_station” und für die Rettungsdienste der Tag „emergency=ambulance_station” genutzt.
+
+Danach werden alle Geometrien (POIs, Flutflächen und Exit Points) in das metrische CRS (EPSG:25833) transformiert, um Abstandsberechnungen in Metern zu ermöglichen. Für jeden POI wird die Luftliniendistanz zum Exit Point berechnet.
+
+
+Die POIs werden in zwei Gruppen aufgeteilt. Rettungsdienste und Feuerwachen. Falls die POI-Geometrien keine Punkte sind, wird der Schwerpunkt verwendet. Im nächsten Schritt werden die Punkte aussortiert, die sich innerhalb der Flut befinden. Anschließend werden die fünf nächstgelegenen Rettungsdienste und Feuerwachen entlang der Luftlinie ausgewählt.
+
+Die Rückgabe der Funktion erfolgt wie folgt:
+- Die fünf nächstgelegenen Rettungsdienste (Punktgeometrien),
+- Die fünf nächstgelegenen Feuerwachen (Punktgeometrien),
+- Die auf die Isochrone zugeschnittenen Flutflächen (Polygongeometrien),
+- Die 15-Minuten-Isochrone (Polygongeometrie).
+
+Die Auswahl von jeweils fünf Einrichtungen pro Kategorie stellt sicher, dass alle relevanten Rettungsdienste und Feuerwachen für den Exit Point berücksichtigt werden. Das Ziel der Analyse besteht darin, zu untersuchen, ob sich die Zuständigkeit der Stationen für ein Gebiet ändern sollte, sobald Hochwasser das Straßennetz beeinträchtigt.
